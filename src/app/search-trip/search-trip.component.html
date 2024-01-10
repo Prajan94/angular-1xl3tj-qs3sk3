@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <p class="mt-2 mb-1">
+    Embarking on a captivating journey, exploring the diverse landscapes and
+    rich cultural tapestry of India.
+  </p>
+  <div class="col-sm-12 row">
+    <div class="col-sm-8">
+      <input type="textbox" style="width:100%">
+    </div>
+    <div class="col-sm-1">
+      <input type ="checkbox"><span>Car</span>
+    </div>
+    <div class="col-sm-1">
+      <input type ="checkbox"><span>Bike</span>
+    </div>
+    <div class="col-sm-2">
+      <button style="width:100% "class="col-sm-2" (click)= "search()" class="btn btn-primary">Search</button>
+    </div>
+  </div>
+  <div *ngIf="searchClicked" class="row container-fluid">
+    <div *ngFor= "let trips of tripArray" class="card col-sm-3 mt-2 mb-2">
+      <!-- <img src="..." class="card-img-top" alt="..." /> -->
+      <div class="card-body">
+        <h5 class="card-title">{{ trips.tripHeader }}</h5>
+        <p class="card-text">
+          {{ trips.tripDetils }}
+        </p>
+        <a class="btn btn-primary">Book Seat</a>
+      </div>
+    </div>
+  </div>
+</div>

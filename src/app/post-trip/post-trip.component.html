@@ -1,0 +1,184 @@
+<ng-stepper #cdkStepper [linear]="true">
+  <cdk-step [editable]= "!confirmation" [stepControl]="stepOne.stepOneForm" [optional]="false">
+    <ng-template cdkStepLabel>
+      <div class="step-bullet">1</div>
+      <div class="step-title">Personal Details <span class="required">*</span></div>
+    </ng-template>
+      <form #stepOne [formGroup]="stepOneForm" autocomplete="off"
+      novalidate #formRef="ngForm" (ngSubmit)="submitSteponeForm()">
+        <div class="container">
+            <div class="row col-sm-12">
+              <div class="col-sm-4">
+                <label for="exampleInputName">Name</label>
+                <input type="text" formControlName="firstName" class="form-control" id="exampleInputName" placeholder="Enter Name">
+                <span class="error" *ngIf="stepOneForm.controls['firstName'].hasError('required') && formRef.submitted">First Name is a required field
+                </span>
+            </div>
+            <div class="col-sm-4">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+          <div class="col-sm-4">
+            <label for="exampleInputAge">Date Of Birth</label>
+            <input type="date" formControlName="age" class="form-control" id="exampleInputAge" placeholder="Enter Date Of Birth">
+          </div>
+        </div>
+        <div class="row col-sm-12">
+          <div class="col-sm-4">
+            <label for="exampleInputGender">Gender</label>
+            <select formControlName="gender" class="form-control" id="exampleInputGender" placeholder="Enter Gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Transgender">Transgender</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+          <label for="exampleInputPhone">Phone Number</label>
+          <input formControlName="phoneNumber" type="tel"  class="form-control" id="exampleInputPhone" placeholder="Enter Phone Number">
+          <small class="form-text text-muted">We'll never share your number with anyone else.</small>
+        </div>
+        <div class="col-sm-4">
+          <label for="exampleInputCompanyName">Company Name</label>
+          <input type="text" formControlName="companyName" class="form-control" id="exampleInputCompanyName" placeholder="Enter Company Name">
+      </div>
+    </div>
+      </div>
+      <div class="button" style="margin-left: 25rem; margin-top: 2rem">
+        <button class="btn btn-primary" cdkStepperNext>Next</button>
+      </div>
+      </form>
+
+  </cdk-step>
+
+  <cdk-step [editable]= "!confirmation" [stepControl]="stepTwo.stepTwoForm" [optional]="true">
+    <ng-template cdkStepLabel>
+      <div class="step-bullet">2</div>
+      <div class="step-title">Trip Details <span class="required">*</span></div>
+    </ng-template>
+    <form #stepTwo [formGroup]="stepTwoForm">
+      <div class="container">
+        <div class="row col-sm-12">
+          <div class="col-sm-4">
+            <label for="exampleInputPlace">Place</label>
+            <input type="text" formControlName="place" class="form-control" id="exampleInputPlace" placeholder="Enter place">
+          </div>
+          <div class="col-sm-4">
+            <label for="exampleInputVehicle">Vehicle</label>
+            <select formControlName="vehicle" class="form-control" id="exampleInputVehicle" placeholder="Select Vehicle">
+              <option value="Car">Car</option>
+              <option value="Bike">Bike</option>
+            </select>
+          </div>
+          <div class="col-sm-4">
+            <label for="exampleInputSeat">Seats</label>
+            <input type="number" formControlName="seats" class="form-control" id="exampleInputSeat" placeholder="Enter Seats">
+          </div>
+        </div>
+        <div class="row col-sm-12">
+          <div class="col-sm-4">
+            <label for="exampleInputDate">Date of Trip</label>
+            <input type="date" formControlName="dateOfTrip" class="form-control" id="exampleInputDate" placeholder="Select Date">
+          </div>
+          <div class="col-sm-4">
+            <label for="exampleInputPrice">Price</label>
+            <input type="number" formControlName="sharingPrice" class="form-control" id="exampleInputPrice" placeholder="Quote Price">
+          </div>
+          <div class="col-sm-4">
+            <label for="exampleInputInstructions">Instructions to Partners</label>
+            <input type="text" formControlName="instructions" class="form-control" id="exampleInputInstructions" placeholder="Enter Instructions">
+          </div>
+        </div>
+      </div>
+      <div style="margin-left: 25rem; margin-top: 2rem">
+        <button class="btn btn-secondary " cdkStepperPrevious>Previous</button>
+        <button (click)="execPreview()" class="btn btn-primary" style="margin-left: 1rem;" cdkStepperNext>Next</button>
+      </div>
+    </form>
+    <!-- <app-step-two #stepTwo></app-step-two> -->
+  </cdk-step>
+
+  <cdk-step [editable]="false" [completed]="false" [stepControl]="previewDeatils" [optional]="true">
+    <ng-template cdkStepLabel>
+      <div class="step-bullet">3</div>
+      <div class="step-title">Preview</div>
+    </ng-template>
+    <div *ngIf="previewDeatilsEnabled"  class="container">
+      <div class="row col-sm-12">
+        <div class="col-sm-2">
+          <label>Name</label><br>
+          <label>{{stepOneForm.controls['firstName'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Email</label><br>
+          <label>{{stepOneForm.controls['email'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Age</label><br>
+          <label>{{stepOneForm.controls['age'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Gender</label><br>
+          <label>{{stepOneForm.controls['gender'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Phone Number</label><br>
+          <label>{{stepOneForm.controls['phoneNumber'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Company Name</label><br>
+          <label>{{stepOneForm.controls['companyName'].value}}</label>
+        </div>
+      </div>
+      <div class="mt-2 row col-sm-12">
+        <div class="col-sm-2">
+          <label>Trip Place</label><br>
+          <label>{{stepTwoForm.controls['place'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Vehicle</label><br>
+          <label>{{stepTwoForm.controls['vehicle'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Seats</label><br>
+          <label>{{stepTwoForm.controls['seats'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Date of Trip</label><br>
+          <label>{{stepTwoForm.controls['dateOfTrip'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Sharing Price</label><br>
+          <label>{{stepTwoForm.controls['sharingPrice'].value}}</label>
+        </div>
+        <div class="col-sm-2">
+          <label>Instructions</label><br>
+          <label>{{stepTwoForm.controls['instructions'].value}}</label>
+        </div>
+      </div>
+      <div style="margin-left: 25rem; margin-top: 2rem">
+        <button class="btn btn-secondary " cdkStepperPrevious>Previous</button>
+        <button (click)="submitTrip()" class="btn btn-primary" style="margin-left: 1rem;" cdkStepperNext>Submit</button>
+      </div>
+    </div>
+    <!-- <app-step-three #stepThree></app-step-three> -->
+  </cdk-step>
+
+  <cdk-step [editable]="false" [completed]="true" [stepControl]="confirmationStep" [optional]="true" >
+    <ng-template cdkStepLabel>
+      <div class="step-bullet">4</div>
+      <div class="step-title">Confirmation</div>
+    </ng-template>
+    <div class="container">
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Congratulations! Your trip has been posted successfully</h4>
+        <p>Get ready for an exciting journey filled with unforgettable experiences and discoveries. Happy tripping!</p>
+        <hr>
+        <p class="mb-0">Embarking on a trip with strangers can be both exciting and rewarding. To foster a positive experience, ensure open communication, respect individual preferences, and embrace the opportunity to forge new connections. Adventure awaits, and we're here to help make your journey with strangers memorable and harmonious. Safe travels!</p>
+      </div>
+    </div>
+    <div class="button" style="margin-left: 25rem; margin-top: 2rem">
+      <button class="btn btn-primary" (click)="cdkStepper.reset();postNewTrip()" >Post Trip</button>
+    </div>
+  </cdk-step>
+</ng-stepper>

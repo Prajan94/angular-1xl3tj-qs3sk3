@@ -1,0 +1,29 @@
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+.margin-top-4  {
+  margin-top:5rem;
+}
+.adjust-size
+{
+  width: 1240px;
+  height: 500px;
+}
+.res-500 {
+  width: 500px;
+  height: 500px;
+}
+.res-400 {
+  width: 400px;
+  height: 500px;
+}
